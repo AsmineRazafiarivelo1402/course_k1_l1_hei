@@ -1,0 +1,1 @@
+//Ecrire de programme qui transforme quand il y a de backspace [abc# =>ab ; abcd##### => ""]

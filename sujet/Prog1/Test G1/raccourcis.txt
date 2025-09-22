@@ -1,0 +1,6 @@
+Raccourcis clavier
+*ctrl + b : afficher /Cacher l'explorateur de fichier
+*ctrl + p : chercher un fichier en tapant une partie de son nom
+*ctrl +w : fermer l'onglet actuel
+*ctrl + shift +p : ouvrir la ligne de commande de vs
+*ctrl + j/ ctrl  + ' : ouvrir /fermer le terminal
