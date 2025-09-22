@@ -1,0 +1,9 @@
+"exampletesthere" becomes: ["erehtse","example","t"]
+Step 	Original String 	1st String 	2nd String 	Remaining String
+1 	exampletesthere 	e 	e 	xampletesther
+2 	xampletesther 	er 	ex 	ampletesthe
+3 	ampletesthe 	ere 	exa 	mpletesth
+4 	mpletesth 	ereh 	exam 	pletest
+5 	pletest 	ereht 	examp 	letes
+6 	letes 	erehts 	exampl 	ete
+7 	ete 	erehtse 	example 	t

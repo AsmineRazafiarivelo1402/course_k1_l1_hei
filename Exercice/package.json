@@ -1,0 +1,15 @@
+{
+  "name": "restok1",
+  "version": "1.0.0",
+  "description": "restok1 is an easy-to-use and awesome software that allows you to handle bills, and or ders in your own restaurant.",
+  "main": "index.js",
+
+  "keywords": [
+    "restaurant",
+    "bills",
+    "food",
+    "software"
+  ],
+  "author": "k1-HEI"
+ 
+}

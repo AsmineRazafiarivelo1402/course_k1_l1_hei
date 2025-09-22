@@ -1,0 +1,55 @@
+Test k1 
+EXO1: CONVÉRTIR LES NOMBRES NÉGATIFS À VALEUR POSITIFS
+
+function entier(tableau=[]) {
+    let newtableau=[]
+    if(tableau.length==0){
+        return []
+    }else if(tableau==null || tableau==undefined){
+        return []
+    }else if(tableau.length>0){
+        for (let i = 0; i < tableau.length; i++) {
+            if(tableau[i]<0){
+                 newtableau[i]= - (tableau[i])
+            }else if(tableau[i]>0){
+                 newtableau[i]=tableau[i]
+            }
+             
+         }
+          
+    return newtableau
+    }
+   
+}
+
+----------------------------------------------
+
+EXO2 VÉRIFIER SI LE TABLEAU EST TRIÉ
+
+function table(tableau=[]) {
+    let decroissant=1
+    let croissant=1
+    for (let i = 0; i < tableau.length; i++) {
+        
+       if(tableau[i]>tableau[i+1]){
+            decroissant++
+       }
+        
+    }
+    for (let i = 0; i < tableau.length; i++) {
+        if(tableau[i]<tableau[i+1]){
+            croissant++
+       }
+    }
+    if (croissant==tableau.length) {
+        return "yes,asc"
+    }
+     else if(decroissant==tableau.length){
+        return "yes,desc"
+    }
+    else{
+        return "no"
+    }
+   
+   
+}
