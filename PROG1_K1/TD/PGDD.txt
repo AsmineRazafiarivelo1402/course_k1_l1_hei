@@ -1,0 +1,5 @@
+Créez une fonction qui calcule le PGCD de deux nombres. Une des formules
+possibles pour calculer le PGCD est la suivante :
+• pgcd (a, b)= pgcd (a − b, a), si a> b
+• pgcd (a, b)= pgcd (a,b − a), si b >a
+• pgcd (a, b)= a, si a = b
