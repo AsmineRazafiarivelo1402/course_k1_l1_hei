@@ -1,0 +1,109 @@
+⚙️ Modes principaux de Vim
+
+Vim fonctionne en modes, ce qui peut être déroutant au début :
+Mode	Description
+Normal mode	Pour naviguer, copier, coller, supprimer, etc. (mode par défaut)
+Insert mode	Pour écrire du texte
+Visual mode	Pour sélectionner du texte
+Command mode	Pour exécuter des commandes (comme :w, :q, etc.)
+🧭 Commandes de base
+🔄 Passer entre les modes :
+
+    i → passer en mode insert (écrire du texte)
+
+    Esc → revenir au mode normal
+
+    v → passer en mode visuel
+
+    : → passer en mode commande
+
+📄 Fichier :
+
+    :w → enregistrer
+
+    :q → quitter
+
+    :wq → enregistrer et quitter
+
+    :q! → quitter sans enregistrer
+
+🧭 Navigation :
+
+    h j k l → gauche, bas, haut, droite
+
+    gg → début du fichier
+
+    G → fin du fichier
+
+    0 → début de ligne
+
+    $ → fin de ligne
+
+    :n → aller à la ligne n (ex : :25)
+
+✂️ Copier / Couper / Coller :
+
+    yy → copier une ligne
+
+    dd → couper une ligne
+
+    p → coller après le curseur
+
+    u → annuler
+
+    Ctrl + r → refaire (redo)⚙️ Modes principaux de Vim
+
+Vim fonctionne en modes, ce qui peut être déroutant au début :
+Mode	Description
+Normal mode	Pour naviguer, copier, coller, supprimer, etc. (mode par défaut)
+Insert mode	Pour écrire du texte
+Visual mode	Pour sélectionner du texte
+Command mode	Pour exécuter des commandes (comme :w, :q, etc.)
+🧭 Commandes de base
+🔄 Passer entre les modes :
+
+    i → passer en mode insert (écrire du texte)
+
+    Esc → revenir au mode normal
+
+    v → passer en mode visuel
+
+    : → passer en mode commande
+
+📄 Fichier :
+
+    :w → enregistrer
+
+    :q → quitter
+
+    :wq → enregistrer et quitter
+
+    :q! → quitter sans enregistrer
+
+🧭 Navigation :
+
+    h j k l → gauche, bas, haut, droite
+
+    gg → début du fichier
+
+    G → fin du fichier
+
+    O: Pour créer une ligne en haut
+    0 → début de ligne,pour créer une ligne en bas
+
+    $ → fin de ligne
+
+    :n → aller à la ligne n (ex : :25)
+
+✂️ Copier / Couper / Coller :
+
+    yy → copier une ligne
+
+    dd → couper une ligne
+
+    p → coller après le curseur
+
+    u → annuler
+
+    Ctrl + r → refaire (redo)    Ctrl + r → refaire (redo)
+    Hello from the other side 

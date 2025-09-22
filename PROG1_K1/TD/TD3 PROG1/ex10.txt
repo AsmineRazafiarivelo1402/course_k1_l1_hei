@@ -1,0 +1,30 @@
+// ● son nom
+// ● son âge
+// ● sa taille en cm
+// ● la couleur de ses yeux
+// ● la couleur de ses cheveux
+// ● sa taille en silhouette ( XS, S, L, M, XL, XXL)
+// ● son pays de provenance
+
+// Exemple : [“Corine”, 23, 170, “bleu”, “rousse”, “XS”, “Angleterre”]
+
+// Voici les critères de Johnny :
+// ➔ Entre 20 et 26 ans  => age E [20,26]
+// ➔ Pas moins de 165 cm de longueur et pas plus de 175 cm => longeur E [165,175]
+// ➔ Avec des yeux bleus ou verts => yeux=[bleus, verts]
+// ➔ Des cheveux qui ne sont pas rousses => cheveux != rousses
+// ➔ Taille S ou L ou M => taille= S,M,L
+// ➔ Du même pays que lui : Allemagne => pays = Allemagne
+
+ goOnDateWithJohnny (
+     [
+     [“Sofia”, 25, 167, “bleu”, “brune”, “M”, “Allemagne”],
+     [“Jeanne”, 27, 169, “vert”, “rousse”, “S”, “Allemagne”],
+     [“Karlota”, 23, 166, “noir”, “noir”, “L”, “Italie”],
+     [“Zoe”, 23, 165, “bleu”, “blonde”, “S”, “Allemagne”]
+     ]
+     );
+
+// Sortie attendue : [[“Sofia”, 25, 167, “bleu”, “brune”, “M”, “Allemagne”], [“Zoe”, 23, 165, “bleu”,
+//     “blonde”, “S”, “Allemagne”]]
+

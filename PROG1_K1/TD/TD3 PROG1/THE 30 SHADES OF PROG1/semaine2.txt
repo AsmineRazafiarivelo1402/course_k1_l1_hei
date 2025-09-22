@@ -1,0 +1,126 @@
+package com.personel.Student;
+/* Je me suis documenté  sur Guillaume JACQUELET
+  https://www.jiraws.com.
+ ##DIFFÉRENCE ENTRE @OVERRIDE ET @OVERLOAD
+1) ____ @override (Redéfinition) : Réécriture du corps d’une méthode pour
+remplacer celui reçu via l’héritage d’une classe ou d’une interface.
+
+_____€xemple:
+        public class Voiture {
+        private String marque;
+        private String modele;
+        // Réécriture d’un code plus adapté de la méthode Object.toString()
+        @Override
+        public String toString() {
+        return "Modèle " + this.modele + " de la marque " + this.marque;
+        }
+        }
+
+2) ____ @Overload (Surcharge) : Implémentation multiple d’une méthode
+possédant le même nom mais ayant un type de retour et/ou des
+paramètres (paramètre) différents.
+
+_____€xemple:
+        // Méthode pour additionner deux entiers
+        public int add(int a, int b) {
+        return a + b;
+        }
+        // Méthode surchargée pour additionner trois entiers
+        public int add(int a, int b, int c) {
+        return a + b + c;
+        }
+ */
+
+//CRÉATION DE MÉTHODES JS EN JAVA
+
+import java.util.ArrayList;
+
+public class JsTableImplementation<T> implements JavascriptTable<T>{
+    private ArrayList<T> array = new ArrayList<>();
+
+
+
+    public JsTableImplementation(ArrayList<T> array) {
+        this.array = array;
+    }
+
+    @Override
+    public void push(T element) {
+
+             array.add(element);
+
+        System.out.println(array);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        if(array == null) {
+            return true;
+        }
+        return false;
+
+    }
+
+    @Override
+    public T pop() {
+     ArrayList<T> popArray = new ArrayList<>();
+       for (T element : array){
+           if(element != array.get((array.size()) - 1) ){
+               popArray.add(element);
+           }
+       }
+       array = popArray;
+       return (T) array;
+
+    }
+
+    @Override
+    public T shift() {
+        ArrayList<T> popArray = new ArrayList<>();
+        for (T element : array){
+            if(element != array.get(0) ){
+                popArray.add(element);
+            }
+        }
+        array = popArray;
+        return (T) array;
+    }
+
+
+
+    @Override
+    public void unshift(T element) {
+        ArrayList<T> popArray = new ArrayList<>();
+        popArray.add(element);
+        for (T elementOfArray : array){
+            popArray.add(elementOfArray);
+        }
+        array = popArray;
+        System.out.println(array);
+    }
+
+
+    public static void main(String[] args) {
+        JsTableImplementation tab = new JsTableImplementation(new ArrayList<>());
+        JsTableImplementation listName = new JsTableImplementation(new ArrayList<>());
+
+
+        System.out.println(tab.isEmpty());
+        tab.push(2);
+        tab.push(4);
+        tab.push(7);
+        tab.push(14);
+        System.out.println(tab.pop());
+        System.out.println(tab.shift());
+        tab.unshift(81);
+
+        System.out.println(listName.isEmpty());
+        listName.push("Asmine");
+        listName.push("Miriame");
+        listName.push("RAZAFIARIVELO");
+        listName.pop();
+        listName.shift();
+        listName.unshift("Valencia");
+
+    }
+}
