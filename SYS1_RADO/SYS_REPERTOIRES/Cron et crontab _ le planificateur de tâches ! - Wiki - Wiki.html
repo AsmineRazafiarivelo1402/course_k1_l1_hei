@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="fr" prefix="og: http://ogp.me/ns#"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Cron et crontab : le planificateur de tâches ! - Wiki - Wiki</title>
+<meta charset="UTF-8">
+<meta name="description" content="
+Introduction
+Crontab est un outil qui permet de lancer des applications de façon régulière, pratique pour un serveur pour y...">
+<meta name="generator" content="PHPBoost">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:site_name" content="Linuxtricks.fr">
+<meta property="og:locale" content="fr">
+<meta property="og:title" content="Cron et crontab : le planificateur de tâches ! - Wiki">
+<meta property="og:type" content="website">
+<meta property="og:description" content="
+Introduction
+Crontab est un outil qui permet de lancer des applications de façon régulière, pratique pour un serveur pour y...">
+<link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/default.css" type="text/css" media="screen, print">
+<link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/font-awesome.css">
+<link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/font-awesome-animation.css">
+<link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/lightcase.css">
+<link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/design.css" type="text/css" media="screen">
+<link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/content.css" type="text/css" media="screen, print">
+<link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/table.css" type="text/css" media="screen, print">
+<link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/form.css" type="text/css" media="screen, print">
+<link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/global.css" type="text/css" media="screen, print">
+<link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/cssmenu.css" type="text/css" media="screen">
+<link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/connect_mini.css" type="text/css" media="screen, print"><link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/online.css" type="text/css" media="screen, print"><link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/poll_mini.css" type="text/css" media="screen, print"><link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/search_mini.css" type="text/css" media="screen, print"><link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/bbcode.css" type="text/css" media="screen, print"><link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/themeswitcher.css" type="text/css" media="screen, print"><link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/ReCaptcha.css" type="text/css" media="screen, print"><link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/SocialNetworks.css" type="text/css" media="screen, print"><link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/user.css" type="text/css" media="screen, print"><link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/upload.css" type="text/css" media="screen, print"><link rel="stylesheet" href="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/wiki.css" type="text/css" media="screen, print">
+<link rel="shortcut icon" href="https://www.linuxtricks.fr/lt-favicon-2015.ico" type="image/vnd.microsoft.icon">
+
+
+</head>
+<body itemscope="itemscope" itemtype="http://schema.org/WebPage">
+<header id="header">
+<div id="top-header">
+<div id="site-infos">
+<div id="site-logo"></div>
+<div id="site-name-container">
+<a id="site-name" href="https://www.linuxtricks.fr/">Linuxtricks.fr</a>
+<span id="site-slogan">Site mémo et blogue d'Adrien - Sans pubs ni traqueurs</span>
+</div>
+</div>
+<div id="top-header-content">
+<div role="search" id="module-mini-search" class="float-right">
+<form role="search" action="/search/search.php#results" onsubmit="return check_search_mini_form_post();" method="post">
+<div id="mini-search-form" class="input-element-button">
+<input type="search" id="TxTMiniSearched" title="Votre recherche" name="q" placeholder="Recherche..." aria-labelledby="SearchButton">
+<input type="hidden" id="search-token" name="token" value="8e0f438b3750c8db">
+<button id="SearchButton" class="submit" type="submit" name="search_submit"><i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">Rechercher</span></button>
+</div>
+</form>
+</div>
+
+</div>
+</div>
+<div id="sub-header">
+<div id="sub-header-content">
+ 
+ 
+<nav aria-label="Linuxtricks" id="cssmenu-1764" class="cssmenu cssmenu-horizontal cssmenu-with-submenu"><a href="https://www.linuxtricks.fr/" title="Linuxtricks" class="cssmenu-img cssmenu-img-level-0">
+</a><div id="menu-button-linuxtricks" class="menu-button"><a href="https://www.linuxtricks.fr/" title="Linuxtricks" class="cssmenu-img cssmenu-img-level-0">
+</a>Linuxtricks</div>
+
+<ul class="level-0"> 
+<li>
+<a href="https://www.linuxtricks.fr/" title="Lien vers la page Accueil" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/accueil_12.png" alt="" height="12" width="12"> Accueil</a>
+</li>
+ 
+ 
+<li class="has-sub"><span class="submenu-button"></span>
+<a href="https://www.linuxtricks.fr/news" title="Lien vers la page Blogue" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/blogue_12.png" alt="" height="12" width="12"> Blogue</a>
+ 
+<ul class="level-1"> 
+<li>
+<a href="https://www.linuxtricks.fr/news/" title="Lien vers la page Tout le blogue" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/blogue_12.png" alt="" height="12" width="12"> Tout le blogue</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/news/10-logiciels-libres/" title="Lien vers la page Logiciels libres" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/blogue_12.png" alt="" height="12" width="12"> Logiciels libres</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/news/12-actus-linuxtricks/" title="Lien vers la page Actus Linuxtricks" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/blogue_12.png" alt="" height="12" width="12"> Actus Linuxtricks</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/news/11-le-sac-de-chips/" title="Lien vers la page Le sac de chips" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/blogue_12.png" alt="" height="12" width="12"> Le sac de chips</a>
+</li>
+</ul>
+</li>
+ 
+ 
+<li class="has-sub"><span class="submenu-button"></span>
+<a href="https://www.linuxtricks.fr/wiki/wiki.php" title="Lien vers la page Wiki" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/wiki_12.png" alt="" height="12" width="12"> Wiki</a>
+ 
+<ul class="level-1"> 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/generalites-systeme-linux" title="Lien vers la page Généralités Linux" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/generalites-linux_12.png" alt="" height="12" width="12"> Généralités Linux</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/console" title="Lien vers la page Console" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/console_12.png" alt="" height="12" width="12"> Console</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/services" title="Lien vers la page Services et Serveurs" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/services_12.png" alt="" height="12" width="12"> Services et Serveurs</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/utiliser-gentoo-et-calculate-linux" title="Lien vers la page Gentoo et Calculate Linux" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/utiliser-gentoo-12.png" alt="" height="12" width="12"> Gentoo et Calculate Linux</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/utiliser-fedora-red-hat-et-derivees" title="Lien vers la page Fedora, Red Hat et dérivées" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/utiliser-centos_12.png" alt="" height="12" width="12"> Fedora, Red Hat et dérivées</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/utiliser-debian-et-derivees" title="Lien vers la page Debian et dérivées" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/utiliser-debian_12.png" alt="" height="12" width="12"> Debian et dérivées</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/programmation" title="Lien vers la page Scripts et Programmation" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/programmation_12.png" alt="" height="12" width="12"> Scripts et Programmation</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/virtualisation" title="Lien vers la page Virtualisation" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/virtualisation_12.png" alt="" height="12" width="12"> Virtualisation</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/windows" title="Lien vers la page Windows" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/windows_12.png" alt="" height="12" width="12"> Windows</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/interface-et-session-graphique" title="Lien vers la page Interface et session graphique" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/environnements-bureau_12.png" alt="" height="12" width="12"> Interface et session graphique</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/logiciels-graphiques" title="Lien vers la page Logiciels graphiques" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/logiciels_12.png" alt="" height="12" width="12"> Logiciels graphiques</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/autres-distribs-linux" title="Lien vers la page Autres distribs" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/autres-linux_12.png" alt="" height="12" width="12"> Autres distribs</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/hors-linux" title="Lien vers la page Hors Linux" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/hors-linux_12.png" alt="" height="12" width="12"> Hors Linux</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/archives" title="Lien vers la page Archives" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/archives_12.png" alt="" height="12" width="12"> Archives</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/en-cours-de-redaction" title="Lien vers la page En rédaction" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/en-cours-de-redaction_12.png" alt="" height="12" width="12"> En rédaction</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/wiki/conferences-et-ateliers" title="Lien vers la page Archives COAGUL" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/articles_12.png" alt="" height="12" width="12"> Archives COAGUL</a>
+</li>
+</ul>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/pages/rechercher-sur-linuxtricks" title="Lien vers la page Rechercher" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/search_12.png" alt="" height="12" width="12"> Rechercher</a>
+</li>
+ 
+ 
+<li class="has-sub"><span class="submenu-button"></span>
+<span class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/a-propos_12.png" alt="" height="12" width="12">A propos</span>
+ 
+<ul class="level-1"> 
+<li>
+<a href="https://www.linuxtricks.fr/pages/support-et-contact" title="Lien vers la page Support et Contact" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/contact_12.png" alt="" height="12" width="12"> Support et Contact</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/pages/communaute-linuxtricks-sur-telegram" title="Lien vers la page Communauté Linuxtricks" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/contact_12.png" alt="" height="12" width="12"> Communauté Linuxtricks</a>
+</li>
+ 
+<li>
+<a href="https://t.me/linuxtricksannonces" title="Lien vers la page Linuxtricks Annonces (Canal Télégram)" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Linuxtricks Annonces (Canal Télégram)</a>
+</li>
+ 
+<li>
+<a href="https://github.com/aaaaadrien" title="Lien vers la page Mon Github" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Mon Github</a>
+</li>
+ 
+<li>
+<a href="https://www.youtube.com/channel/UCDKPGD9T00eS_l--D_DRTUQ/videos?sub_confirmation=1" title="Lien vers la page Youtube (Adrien Linuxtricks)" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Youtube (Adrien Linuxtricks)</a>
+</li>
+ 
+<li>
+<a href="https://www.twitch.tv/AdrienLinuxtricks" title="Lien vers la page Twitch (Adrien Linuxtricks)" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Twitch (Adrien Linuxtricks)</a>
+</li>
+ 
+<li>
+<a href="https://www.twitch.tv/adrienLT_DJ" title="Lien vers la page Twitch (adrienLT_DJ)" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Twitch (adrienLT_DJ)</a>
+</li>
+ 
+<li>
+<a href="https://dj.linuxtricks.fr/" title="Lien vers la page Site adrienLT_DJ" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Site adrienLT_DJ</a>
+</li>
+ 
+ 
+<li class="has-sub"><span class="submenu-button"></span>
+<span class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/flux_12.png" alt="" height="12" width="12">RSS</span>
+ 
+<ul class="level-2"> 
+<li>
+<a href="https://www.linuxtricks.fr/syndication/rss/wiki" title="Lien vers la page Wiki" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/flux_12.png" alt="" height="12" width="12"> Wiki</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/syndication/rss/news" title="Lien vers la page Blogue" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/flux_12.png" alt="" height="12" width="12"> Blogue</a>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/user/messages/comments" title="Lien vers la page Commentaires" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/flux_12.png" alt="" height="12" width="12"> Commentaires</a>
+</li>
+</ul>
+</li>
+ 
+<li>
+<a href="http://miroir.linuxtricks.fr/" title="Lien vers la page Miroir Calculate Linux" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/utiliser-calculate_12.png" alt="" height="12" width="12"> Miroir Calculate Linux</a>
+</li>
+ 
+ 
+<li class="has-sub"><span class="submenu-button"></span>
+<span class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12">Liens utiles</span>
+ 
+<ul class="level-2"> 
+<li>
+<a href="https://www.journalduhacker.net/" title="Lien vers la page Le journal du hacker" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Le journal du hacker</a>
+</li>
+ 
+<li>
+<a href="https://www.kernel.org/" title="Lien vers la page kernel.org" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> kernel.org</a>
+</li>
+ 
+<li>
+<a href="http://www.cert.ssi.gouv.fr/site/" title="Lien vers la page CERT-FR" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> CERT-FR</a>
+</li>
+ 
+<li>
+<a href="https://www.cnil.fr/" title="Lien vers la page CNIL" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> CNIL</a>
+</li>
+ 
+<li>
+<a href="https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000006068624&amp;dateTexte=vig" title="Lien vers la page Loi n° 78-17 du 6 janvier 1978" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Loi n° 78-17 du 6 janvier 1978</a>
+</li>
+ 
+<li>
+<a href="http://pkgs.org/" title="Lien vers la page pkgs.org" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> pkgs.org</a>
+</li>
+ 
+<li>
+<a href="https://docs.fedoraproject.org/fr/fedora/latest/" title="Lien vers la page Documentation Fedora" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Documentation Fedora</a>
+</li>
+ 
+<li>
+<a href="https://www.calculate-linux.org/" title="Lien vers la page CalculateLinux" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> CalculateLinux</a>
+</li>
+ 
+<li>
+<a href="http://gpo.zugaina.org/Overlays/" title="Lien vers la page Overlays Gentoo" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Overlays Gentoo</a>
+</li>
+ 
+<li>
+<a href="https://www.netmarketshare.com/" title="Lien vers la page NetMarketShare" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> NetMarketShare</a>
+</li>
+ 
+<li>
+<a href="http://distrowatch.com/" title="Lien vers la page Distrowatch" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Distrowatch</a>
+</li>
+ 
+<li>
+<a href="http://www.mirrorservice.org/sites/" title="Lien vers la page Mirror Service" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/web_12.png" alt="" height="12" width="12"> Mirror Service</a>
+</li>
+</ul>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/poll/" title="Lien vers la page Sondages" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/sondage_12.png" alt="" height="12" width="12"> Sondages</a>
+</li>
+</ul>
+</li>
+ 
+<li>
+<a href="https://www.linuxtricks.fr/pages/faire-un-don" title="Lien vers la page Faire un don" class="cssmenu-title"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/don_12.png" alt="" height="12" width="12"> Faire un don</a>
+</li>
+</ul>
+</nav>
+</div>
+<div class="spacer"></div>
+</div>
+<div class="spacer"></div>
+</header>
+<div id="global">
+<div id="visit-counter" class="hidden-small-screens">
+<div class="visit-counter-total">
+<span class="text-strong">Visiteurs : </span>
+9390182
+</div>
+<div class="visit-counter-today">
+<span class="text-strong">Aujourd'hui : </span>
+670
+</div>
+</div>
+<div id="main" class="" role="main">
+<div id="main-content" itemprop="mainContentOfPage">
+
+<nav id="cssmenu-module-wiki" class="cssmenu cssmenu-right cssmenu-actionslinks"><div id="menu-button-menudactionsdumodulewiki" class="menu-button">Menu d'actions du module Wiki</div>
+<ul class="level-0">
+<li>
+<a href="https://www.linuxtricks.fr/wiki/wiki.php" class="cssmenu-title">Accueil</a>
+</li>
+<li>
+<a href="https://www.linuxtricks.fr/wiki/explorer.php" class="cssmenu-title">Explorateur</a>
+</li>
+</ul>
+</nav>
+
+<nav id="breadcrumb" itemprop="breadcrumb">
+    <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
+<li itemprop="itemListElement" itemscope="" itemtype="http://data-vocabulary.org/ListItem">
+           <a href="https://www.linuxtricks.fr/" itemprop="item">
+                <span itemprop="name">Accueil</span>
+                <meta itemprop="position" content="1">
+            </a>
+</li>
+        
+<li itemprop="itemListElement" itemscope="" itemtype="http://data-vocabulary.org/ListItem">
+          <a href="https://www.linuxtricks.fr/wiki/wiki.php" itemprop="item">
+            <span itemprop="name">Wiki</span>
+            <meta itemprop="position" content="">
+          </a>
+        </li>
+        
+<li itemprop="itemListElement" itemscope="" itemtype="http://data-vocabulary.org/ListItem">
+          <a href="https://www.linuxtricks.fr/wiki/generalites-systeme-linux" itemprop="item">
+            <span itemprop="name">Généralités système Linux</span>
+            <meta itemprop="position" content="">
+          </a>
+        </li>
+        
+<li itemprop="itemListElement" itemscope="" itemtype="http://data-vocabulary.org/ListItem">
+          <a href="https://www.linuxtricks.fr/wiki/gestion-des-services" itemprop="item">
+            <span itemprop="name">Gestion des services</span>
+            <meta itemprop="position" content="">
+          </a>
+        </li>
+        
+<li itemprop="itemListElement" itemscope="" itemtype="http://data-vocabulary.org/ListItem" class="current">
+          <a href="https://www.linuxtricks.fr/wiki/cron-et-crontab-le-planificateur-de-taches" itemprop="item">
+            <span itemprop="name">Cron et crontab : le planificateur de tâches !</span>
+            <meta itemprop="position" content="">
+          </a>
+        </li>
+        
+    </ol>
+</nav>
+<section id="module-wiki">
+<header>
+<div class="cat-actions">
+<a href="https://www.linuxtricks.fr/syndication/rss/wiki/28" aria-label="Syndication"><i class="fa fa-syndication" aria-hidden="true" title="Syndication"></i></a>
+Gestion des services
+</div>
+<h1 itemprop="name">Cron et crontab : le planificateur de tâches !</h1>
+</header>
+<div id="article-wiki-428" class="article-wiki">
+<div class="elements-container columns-2">
+<div class="spacer"></div>
+</div>
+<div class="wiki-tools-container">
+<nav id="cssmenu-wikitools" class="cssmenu cssmenu-right cssmenu-actionslinks cssmenu-tools"><div id="menu-button-outils" class="menu-button">Outils</div>
+<ul class="level-0">
+<li><a href="https://www.linuxtricks.fr/wiki/history.php?id=428" class="cssmenu-title">
+<i class="fa fa-fw fa-reply" aria-hidden="true"></i> Historique
+</a></li>
+<li><a href="https://www.linuxtricks.fr/wiki/print.php?id=428" class="cssmenu-title">
+<i class="fa fa-fw fa-print" aria-hidden="true"></i> Version imprimable
+</a></li>
+</ul>
+</nav>
+</div>
+<div class="spacer"></div>
+<div class="content">
+<!--<span class="wiki-sticky-title blink">Table des matières</span>-->
+<span class="wiki-sticky-title" style="opacity:1;">Table des matières</span>
+<div class="wiki-sticky">
+<ol class="wiki-list wiki-list-1"><li><a href="#paragraph-introduction">Introduction</a></li><li><a href="#paragraph-l-installation">L'installation</a><ol class="wiki-list wiki-list-2"><li><a href="#paragraph-debian">Debian</a></li><li><a href="#paragraph-fedoracentos">Fedora/CentOS</a></li><li><a href="#paragraph-gentoo">Gentoo</a></li></ol></li><li><a href="#paragraph-la-configuration">La configuration</a></li><li><a href="#paragraph-utiliser-la-commande-crontab">Utiliser la commande crontab</a><ol class="wiki-list wiki-list-2"><li><a href="#paragraph-afficher-la-liste-des-actions">Afficher la liste des actions</a></li><li><a href="#paragraph-supprimer-toutes-les-actions">Supprimer toutes les actions</a></li><li><a href="#paragraph-editer-les-actions">Editer les actions</a></li></ol></li><li><a href="#paragraph-guide-de-survie-de-crontab-les-syntaxes">Guide de survie de crontab : les syntaxes</a></li><li><a href="#paragraph-exemples">Exemples</a></li><li><a href="#paragraph-envoi-de-mail">Envoi de mail</a></li></ol>
+</div>
+<div class="spacer"></div>
+<p style="text-align: center;"><img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/crontab.png" alt="crontab" title="crontab"></p><br>
+<br>
+<h2 class="formatter-title wiki-paragraph-2" id="paragraph-introduction">Introduction</h2><br>
+<br>
+Crontab est un outil qui permet de lancer des applications de façon 
+régulière, pratique pour un serveur pour y lancer des scripts de 
+sauvegardes, etc.<br>
+<br>
+<h2 class="formatter-title wiki-paragraph-2" id="paragraph-l-installation">L'installation</h2><br>
+<br>
+Bien que par défaut, il soit souvent installé, voici les commandes pour l'installer sur les différentes distributions<br>
+<br>
+<h3 class="formatter-title wiki-paragraph-3" id="paragraph-debian">Debian</h3><br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-1" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(1)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-1-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">apt-get install</span> cron</pre></pre></div></div><br>
+<br>
+<h3 class="formatter-title wiki-paragraph-3" id="paragraph-fedoracentos">Fedora/CentOS</h3><br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-2" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(2)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-2-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">yum install</span> cronie</pre></pre></div></div><br>
+<br>
+<h3 class="formatter-title wiki-paragraph-3" id="paragraph-gentoo">Gentoo</h3><br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-3" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(3)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-3-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;">emerge <span style="color: #660033;">-av</span> sys-process<span style="color: #000000; font-weight: bold;">/</span>cronie</pre></pre></div></div><br>
+<br>
+<h2 class="formatter-title wiki-paragraph-2" id="paragraph-la-configuration">La configuration</h2><br>
+<br>
+Pour être autorisé à utiliser la commande <strong>crontab</strong>, il faut que l'utilisateur soit présent dans le groupe <strong>cron</strong>.<br>
+<br>
+Les fichiers <strong>/etc/cron.allow </strong>et<strong> /etc/cron.deny</strong> permettent de définir les droits d'utilisation sur crontab.<br>
+<br>
+Si le fichier /etc/cron.allow existe, alors vous devez être présent dans
+ ce fichier pour être autorisé à utiliser cette commande. Si le fichier 
+/etc/cron.allow n'existe pas mais que /etc/cron.deny existe, alors vous 
+ne devez pas être mentionné dans le fichier /etc/cron.deny afin de 
+pouvoir utiliser cette commande.<br>
+<br>
+Je conseille de ne créer qu'un seul des deux fichiers et ensuite placer 
+le nom des utilisateurs auxquels vous voulez donner/refuser l'accès à la
+ commande <strong>crontab</strong>.<br>
+<br>
+<span class="message-helper notice">L'utilisateur root passe outre ces fichiers</span><br>
+<br>
+<span class="message-helper notice">Les fichiers<strong> /etc/cron.allow </strong>et<strong> /etc/cron.deny</strong> gèrent l'accès à la commande <strong>crontab</strong>. Cela signifie que si un utilisateur possède un crontab et qu'ensuite on le supprime de liste de <strong>/etc/cron.allow</strong>, les tâches seront quand même effectuées.<br>
+<br>
+Vous devez supprimer le crontab de cet utilisateur situé dans <strong>/var/spool/cron/crontabs</strong></span><br>
+<br>
+<br>
+<h2 class="formatter-title wiki-paragraph-2" id="paragraph-utiliser-la-commande-crontab">Utiliser la commande crontab</h2><br>
+<br>
+<h3 class="formatter-title wiki-paragraph-3" id="paragraph-afficher-la-liste-des-actions">Afficher la liste des actions</h3><br>
+<br>
+Pour afficher le contenu du fichier <strong>crontab</strong> :<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-4" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(4)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-4-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;">crontab <span style="color: #660033;">-l</span></pre></pre></div></div><br>
+<br>
+<h3 class="formatter-title wiki-paragraph-3" id="paragraph-supprimer-toutes-les-actions">Supprimer toutes les actions</h3><br>
+<br>
+<br>
+Pour supprimer toutes les actions du fichier <strong>crontab</strong> :<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-5" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(5)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-5-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;">crontab <span style="color: #660033;">-r</span></pre></pre></div></div><br>
+<br>
+<h3 class="formatter-title wiki-paragraph-3" id="paragraph-editer-les-actions">Editer les actions</h3><br>
+<br>
+<br>
+Pour éditer les actions du fichier <strong>crontab</strong> :<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-6" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(6)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-6-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;">crontab <span style="color: #660033;">-e</span></pre></pre></div></div><br>
+<br>
+Le crontab s'ouvre avec un éditeur par défaut. Sous Fedora, c'est <strong>vi</strong>. Si on veut utiliser <strong>nano</strong> :<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-7" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(7)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-7-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;"><span style="color: #7a0874; font-weight: bold;">export</span> <span style="color: #007800;">EDITOR</span>=<span style="color: #c20cb9; font-weight: bold;">nano</span>
+crontab <span style="color: #660033;">-e</span></pre></pre></div></div><br>
+<br>
+La syntaxe à utiliser est précise.<br>
+<br>
+<br>
+<h2 class="formatter-title wiki-paragraph-2" id="paragraph-guide-de-survie-de-crontab-les-syntaxes">Guide de survie de crontab : les syntaxes</h2><br>
+<br>
+<br>
+Voici de manière schématique la syntaxe à respecter d'un <strong>crontab</strong>:<br>
+<br>
+<div class="formatter-container formatter-code"><span id="copy-code-8" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(8)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code :</span><div class="formatter-content copy-code-content" id="copy-code-8-content"><code><span style="color: #000000">
+#&nbsp;Example&nbsp;of&nbsp;job&nbsp;definition:<br>#&nbsp;.----------------&nbsp;minute&nbsp;(0&nbsp;-&nbsp;59)<br>#&nbsp;|&nbsp;&nbsp;.-------------&nbsp;hour&nbsp;(0&nbsp;-&nbsp;23)<br>#&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;.----------&nbsp;day&nbsp;of&nbsp;month&nbsp;(1&nbsp;-&nbsp;31)<br>#&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;.-------&nbsp;month&nbsp;(1&nbsp;-&nbsp;12)&nbsp;OR&nbsp;jan,feb,mar,apr&nbsp;...<br>#&nbsp;|
+&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;.----
+&nbsp;day&nbsp;of&nbsp;week&nbsp;(0&nbsp;-&nbsp;6)&nbsp;
+(Sunday=0&nbsp;or&nbsp;7)&nbsp;OR&nbsp;sun,mon,tue,wed,thu,fri,sat<br>#&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|<br>#&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;user&nbsp;command&nbsp;to&nbsp;be&nbsp;executed<br></span>
+</code></div></div><br>
+<br>
+Le fichier de configuration de est constitué des différentes lignes. Chaque ligne correspond à une action.<br>
+<br>
+Prenons l'exemple suivant :<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-9" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(9)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-9-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;">mm hh jj MMM JJJ <span style="color: #7a0874; font-weight: bold;">[</span>user<span style="color: #7a0874; font-weight: bold;">]</span> tâche <span style="color: #000000; font-weight: bold;">&gt;</span> log</pre></pre></div></div><br>
+<br>
+<ul class="formatter-ul">
+<li class="formatter-li"><strong>mm</strong> : minutes (00-59).
+</li><li class="formatter-li"><strong>hh</strong> : heures (00-23) .
+</li><li class="formatter-li"><strong>jj</strong> : jour du mois (01-31).
+</li><li class="formatter-li"><strong>MMM</strong> : mois (01-12 ou abréviation anglaise sur trois lettres : jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec).
+</li><li class="formatter-li"><strong>JJJ</strong> : jour de la semaine (1-7 ou abréviation anglaise sur trois lettres : mon, tue, wed, thu, fri, sat, sun).
+</li><li class="formatter-li"><strong>user (facultatif)</strong> : nom d'utilisateur avec lequel exécuter la tâche.
+</li><li class="formatter-li"><strong>tâche</strong> : commande à exécuter.
+</li><li class="formatter-li"><strong>&gt; log</strong> (facultatif) : 
+redirection de la sortie vers un fichier de log. Si un fichier de log 
+n'est pas spécifié, un mail sera envoyé à l'utilisateur local.<br>
+</li></ul><br>
+<br>
+Pour chaque unité, on peut utiliser les notations suivantes :<br>
+<br>
+<ul class="formatter-ul">
+<li class="formatter-li"><strong>1-5</strong> : les unités de temps de 1 à 5.
+</li><li class="formatter-li"><strong>*/6</strong> : toutes les 6 unités de temps (toutes les 6 heures par exemple).
+</li><li class="formatter-li"><strong>2,7</strong> : les unités de temps 2 et 7.<br>
+</li></ul><br>
+<br>
+Bonus, on a des alias rapides tels que @reboot qui vont nous permettre 
+de lancer une commande au boot de la machine. La syntaxe sera la 
+suivante :<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-10" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(10)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-10-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">@</span>reboot tâche <span style="color: #000000; font-weight: bold;">&gt;</span> log</pre></pre></div></div><br>
+<br>
+<br>
+<br>
+<h2 class="formatter-title wiki-paragraph-2" id="paragraph-exemples">Exemples</h2><br>
+<br>
+<br>
+Exécution tous les jours à 22h00 d'une commande et rediriger les infos dans sauvegarde.log :<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-11" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(11)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-11-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;">00 <span style="color: #000000;">22</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">/</span>root<span style="color: #000000; font-weight: bold;">/</span>scripts<span style="color: #000000; font-weight: bold;">/</span>sauvegarde.sh <span style="color: #000000; font-weight: bold;">&gt;&gt;</span> sauvegarde.log</pre></pre></div></div><br>
+<br>
+Exécution d'une commande toutes les 6 heures :<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-12" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(12)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-12-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;">00 <span style="color: #000000; font-weight: bold;">*/</span><span style="color: #000000;">6</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">/</span>root<span style="color: #000000; font-weight: bold;">/</span>scripts<span style="color: #000000; font-weight: bold;">/</span>synchronisation-ftp.sh</pre></pre></div></div><br>
+<br>
+Exécution d'une commande toute les heures :<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-13" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(13)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-13-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;">00 <span style="color: #000000; font-weight: bold;">*/</span><span style="color: #000000;">1</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">/</span>usr<span style="color: #000000; font-weight: bold;">/</span>sbin<span style="color: #000000; font-weight: bold;">/</span>ntpdate fr.pool.ntp.org</pre></pre></div></div><br>
+<br>
+Exécution d'une commande toutes les minutes uniquement les lundis :<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-14" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(14)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-14-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000;">1</span> <span style="color: #000000; font-weight: bold;">/</span>root<span style="color: #000000; font-weight: bold;">/</span>script<span style="color: #000000; font-weight: bold;">/</span>commandes-du-lundi.sh</pre></pre></div></div><br>
+<br>
+Exécution d'une commande une fois par an à une heure précise (ici le 25 décembre à 00h15) :<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-15" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(15)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-15-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;"><span style="color: #000000;">15</span> 00 <span style="color: #000000;">25</span> <span style="color: #000000;">12</span> <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #7a0874; font-weight: bold;">echo</span> <span style="color: #ff0000;">"Le père Noël est passé !"</span></pre></pre></div></div><br>
+<br>
+Exécuter chaque jour, de chaque mois à 2:15 la commande eix-sync<br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-16" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(16)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-16-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;"><span style="color: #000000;">15</span> 02  <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">*</span>  <span style="color: #000000; font-weight: bold;">*</span> <span style="color: #000000; font-weight: bold;">/</span>usr<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>eix-sync</pre></pre></div></div><br>
+<br>
+<br>
+<br>
+<h2 class="formatter-title wiki-paragraph-2" id="paragraph-envoi-de-mail">Envoi de mail</h2><br>
+<br>
+<br>
+Par défaut, cron envoie un message à l'utilisateur qui a planifié sa tâche.<br>
+<br>
+Pour ne pas envoyer de façon automatique ce message à l'utilisateur (ou <a href="mailto:utilisateur@domaine.ext">utilisateur@domaine.ext</a> si un agent tel que postfix a été configuré) il faut indiquer sur la première ligne du <strong>crontab -e</strong><br>
+<br>
+<div class="formatter-container formatter-code code-BASH"><span id="copy-code-17" class="copy-code" title="Copier vers le presse-papier" onclick="copy_code_clipboard(17)"><i class="fa fa-clipboard"><span class="copy-code-txt">Copier vers le presse-papier</span></i></span><span class="formatter-title">Code BASH :</span><div class="formatter-content copy-code-content" id="copy-code-17-content"><pre style="display:inline;"><pre class="bash" style="font-family:monospace;"><span style="color: #007800;">MAILTO</span>=<span style="color: #ff0000;">""</span></pre></pre></div></div>
+<div class="spacer"></div>
+<div id="more-element-sharing-container" class="more-element more-element-sharing">
+<div class="sharing-button">
+<a href="#" aria-label="Menu réseaux sociaux" onclick="open_submenu('more-element-sharing-container');return false;"><i class="fa fa-share-alt" aria-hidden="true" title="Menu réseaux sociaux"></i></a>
+</div>
+<ul class="sharing-elements-list">
+<li class="sharing-element sharing-element-facebook">
+<a href="https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.linuxtricks.fr%2Fwiki%2Fcron-et-crontab-le-planificateur-de-taches" title="Partager sur Facebook" class="facebook" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;"><i class="fab fa-fw fa-facebook-f" aria-hidden="true"></i>
+<span class="sr-only">Partager sur Facebook</span></a>
+</li>
+<li class="sharing-element sharing-element-twitter">
+<a href="https://twitter.com/share?url=https%3A%2F%2Fwww.linuxtricks.fr%2Fwiki%2Fcron-et-crontab-le-planificateur-de-taches&amp;text=Cron%20et%20crontab%20%3A%20le%20planificateur%20de%20t%C3%A2ches%20%21%20-%20Wiki" title="Partager sur Twitter" class="twitter" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i>
+<span class="sr-only">Partager sur Twitter</span></a>
+</li>
+<li class="sharing-element sharing-element-mail">
+<a href="mailto:?subject=Cron%20et%20crontab%20%3A%20le%20planificateur%20de%20t%C3%A2ches%20%21%20-%20Wiki&amp;body=https%3A%2F%2Fwww.linuxtricks.fr%2Fwiki%2Fcron-et-crontab-le-planificateur-de-taches" title="Partager par Email" class="mail"><i class="fa fa-fw fa-envelope" aria-hidden="true"></i><span class="sr-only">Partager par email</span>
+<span class="sr-only">Partager par Email</span></a>
+</li>
+<li class="sharing-element sharing-element-print">
+<a href="#" title="Version imprimable" class="print" onclick="javascript:window.print()"><i class="fa fa-fw fa-print" aria-hidden="true"></i><span class="sr-only">Imprimer</span>
+<span class="sr-only">Version imprimable</span></a>
+</li>
+</ul>
+</div>
+
+</div>
+</div>
+<footer><div class="wiki-hits">Cette page a été vue 821971 fois</div></footer>
+</section>
+
+</div>
+</div>
+<div class="spacer"></div>
+</div>
+<footer id="footer">
+<div class="footer-infos">
+<span>
+Boosté par <a href="http://www.phpboost.com/" title="PHPBoost">PHPBoost</a> | <a href="https://www.linuxtricks.fr/pages/mentions-legales">Mentions légales</a><br>
+Linuxtricks est mis à disposition selon les termes : <a href="https://creativecommons.org/licenses/by-sa/2.0/fr/" target="_blank">Licence Creative Commons</a> <img src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/cc_by_sa_petit.png" alt="CC by SA"> <br><br>
+</span>
+</div>
+</footer>
+<span id="scroll-to-top" class="scroll-to" aria-label="haut de la page" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true" title="haut de la page"></i></span>
+
+
+<script>
+<!--
+//Variables PHPBoost
+var PATH_TO_ROOT = "";
+var TOKEN        = "8e0f438b3750c8db";
+var THEME        = "linuxtricks";
+var LANG         = "french";
+//Variables BBCode
+var L_HIDE_MESSAGE    = 'Ce message est caché, cliquer ici pour afficher son contenu.';
+var L_HIDE_HIDEBLOCK  = 'Cliquer ici pour cacher le message.';
+var L_COPYTOCLIPBOARD = 'Copier vers le presse-papier';
+//Variables CookieBar
+-->
+</script><script src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/jquery.js"></script><script src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/global.js"></script><script src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/dndfiles.js"></script><script src="Cron%20et%20crontab%20_%20le%20planificateur%20de%20t%C3%A2ches%20!%20-%20Wiki%20-%20Wiki_fichiers/lightcase.js"></script><script>
+function check_search_mini_form_post()
+{
+var textSearched = document.getElementById('TxTMiniSearched').value;
+if (textSearched.length > 3)
+{
+textSearched = escape_xmlhttprequest(textSearched);
+return true;
+}
+else
+{
+alert('La chaine recherchée doit faire au moins 4 caractères !');
+return false;
+}
+}
+jQuery(document).ready(function() {
+jQuery('#search-token').val(TOKEN);
+});
+jQuery("#cssmenu-1764").menumaker({ title: "Linuxtricks", format: "multitoggle", breakpoint: 768 }); 
+jQuery("#cssmenu-module-wiki").menumaker({
+title: "Menu d'actions du module Wiki",
+format: "multitoggle",
+actionslinks: true,
+breakpoint: 768
+});
+jQuery(document).ready(function() {
+jQuery("#cssmenu-module-wiki ul").removeClass('hidden');
+});
+jQuery("#cssmenu-wikitools").menumaker({
+title: "Outils",
+format: "multitoggle",
+breakpoint: 768
+});
+jQuery(document).ready(function() {
+jQuery("#cssmenu-wikitools ul").removeClass('hidden');
+});
+/* Push the body and the nav over by the menu div width over */
+var summaryWidth = jQuery('.wiki-sticky').innerWidth();
+var viewportWidth = jQuery(window).width();
+jQuery('.wiki-sticky-title').on('click',function(f) {
+jQuery('.wiki-sticky-title').removeClass('blink');
+jQuery('.wiki-sticky').animate({
+left: "0px",
+'max-width': viewportWidth + 'px'
+}, 200);
+jQuery('body').animate({
+left: summaryWidth + 'px'
+}, 200);
+f.stopPropagation();
+});
+/* Then push them back by clicking outside the menu or on an inside link*/
+jQuery(document).on('click',function(f) {
+if (jQuery(f.target).is('.wiki-sticky-title') === false) {
+jQuery('.wiki-sticky').animate({
+left: -summaryWidth + 'px'
+}, 200);
+jQuery('body').animate({
+left: "0px"
+}, 200);
+}
+});
+jQuery('.wiki-sticky a').on('click',function() {
+jQuery('.wiki-sticky').animate({
+left: -summaryWidth + 'px'
+}, 200);
+jQuery('body').animate({
+left: "0px"
+}, 200);
+});
+// smooth scroll when clicking on an inside link
+jQuery('.wiki-sticky a').on('click',function(){
+var the_id = jQuery(this).attr("href");
+jQuery('html, body').animate({
+scrollTop:jQuery(the_id).offset().top
+}, 'slow');
+return false;
+});
+jQuery('[data-confirmation]').each(function() {
+data_confirmation = jQuery(this).attr('data-confirmation');
+if (data_confirmation == 'delete-element')
+var message = 'Voulez-vous vraiment supprimer cet élément ?';
+else
+var message = data_confirmation;
+this.onclick = function () { return confirm(message); }
+});
+jQuery(document).ready(function() {
+jQuery('a[rel^=lightbox]').attr('data-rel', 'lightcase:collection');
+jQuery('a[data-lightbox^=formatter]').attr('data-rel', 'lightcase:collection');
+jQuery('a[data-rel^=lightcase]').lightcase({
+labels : {
+'errorMessage'    : 'L\'élément que vous demandez n\'existe pas.',
+'sequenceInfo.of' : ' ' + 'sur' + ' ',
+'close'           : 'Fermer',
+'navigator.prev'  : 'Précédent',
+'navigator.next'  : 'Suivant',
+'navigator.play'  : 'Lecture',
+'navigator.pause' : 'Pause'
+},
+maxHeight: window.innerHeight,
+maxWidth: window.innerWidth,
+shrinkFactor: 0.85
+});
+});
+jQuery('#table').basictable();
+jQuery('#table2').basictable();
+jQuery('#table3').basictable();
+jQuery('#table4').basictable();
+jQuery('#table5').basictable();
+jQuery(function() {
+jQuery(".lined textarea").linedtextarea();
+});
+</script>
+</body></html>

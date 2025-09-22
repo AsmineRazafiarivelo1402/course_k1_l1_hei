@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js" data-layout-name="evergreen"><head>
+		<title>Support Technique - Configuration de Linux pour l'accès à distance</title>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+		<meta name="description" content="Support for software made by Edovia, Inc.">
+		<meta name="keywords" content="edovia,screens,remote,screen,sharing,management,vnc,ssh,motorist,touchpad,numpad,connect">
+		<link rel="icon" type="image/png" href="https://support.edovia.com/images/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="Support%20Technique%20-%20Configuration%20de%20Linux%20pour%20l'acc%C3%A8s%20%C3%A0%20distance_fichiers/stylesheet.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	
+	<body>
+		
+		<!-- HEADER -->
+		
+		<header>
+			<div id="logo">
+				<a href="https://edovia.com/fr">
+					<img src="Support%20Technique%20-%20Configuration%20de%20Linux%20pour%20l'acc%C3%A8s%20%C3%A0%20distance_fichiers/edovia-tractor-logo.png">
+				</a>
+			</div>
+			
+			<ul id="menu">
+				<li><a href="https://edovia.com/fr">Applications</a></li>
+				<li><a href="https://support.edovia.com/fr">Support</a></li>
+				<li><a href="https://edovia.com/fr/company">À propos</a></li>
+				<li><a href="https://blog.edovia.com/">Blogue</a></li>
+			</ul>
+		</header>
+
+		<!-- BREADCRUMBS -->
+		
+		<div class="sub-header">
+			<div class="breadcrumbs">
+				<a href="https://support.edovia.com/fr">Support Technique</a>&nbsp;
+					<span class="bc-text">&gt;</span> 
+					<a href="https://support.edovia.com/fr/screens-4/">Screens 4</a>
+					<span class="bc-text">&gt;</span> <a href="https://support.edovia.com/fr/screens-4/getting-started/">Démarrage</a>
+					<span class="bc-text">&gt;</span> <a href="https://support.edovia.com/fr/screens-4/getting-started/configure-linux">Configuration de Linux pour l'accès à distance</a>
+	
+			</div>
+		
+				<div class="search">
+					<form role="search" autocomplete="off" action="/fr/" accept-charset="UTF-8" method="get" onsubmit="return validateForm()">
+						<input type="search" name="query" id="query" placeholder="Rechercher" aria-label="Rechercher">
+					</form>
+				</div>
+			
+		</div>
+		
+		<!-- CONTENT -->
+		
+		<section id="content">
+
+<h1 class="main-title">Configuration de Linux pour l'accès à distance</h1>
+
+<div class="article-content">
+	<p>Pour que Screens puisse se reconnecter à votre PC Linux, il doit 
+être configuré pour l'accès à distance. Dans notre exemple, nous 
+montrons comment activer le Bureau à distance sur <strong>Ubuntu 22.04</strong>.
+ Les autres distributions peuvent varier, veuillez donc vous reporter au
+ guide de l'utilisateur de votre distribution pour obtenir des 
+instructions.</p>
+<h2>Activer le bureau à distance</h2>
+<p>Selon votre distribution Linux, les détails de configuration peuvent 
+varier, mais la plupart des environnements de bureau Linux modernes 
+fournissent généralement une fonctionnalité appelée Partage de bureau ou
+ Bureau à distance.</p>
+<ol>
+<li>Cliquez sur les icônes qui se trouvent à l'extrême droite de la barre de menu système et cliquez sur <strong>Paramètres</strong>.</li>
+<li>Dans la fenêtre Paramètres, sélectionnez <strong>Partage</strong> et cliquez sur le bouton de commutation supérieur pour activer le service.<br>
+<img src="Support%20Technique%20-%20Configuration%20de%20Linux%20pour%20l'acc%C3%A8s%20%C3%A0%20distance_fichiers/linux-remote-desktop-settings.png" alt=""></li>
+<li>Cliquez sur <strong>Bureau à distance</strong>.</li>
+<li>Activez <strong>Bureau à distance</strong> (cliquez sur le commutateur).</li>
+<li>Sélectionnez <strong>Activer le protocole VNC hérité</strong>.</li>
+<li>Cliquez sur les <strong>3&nbsp;points</strong> et sélectionnez soit <strong>Les nouvelles connexions doivent demander l'accès</strong>, soit <strong>Exiger un mot de passe</strong>.</li>
+<li>Dans le champ Mot de passe, saisissez un mot de passe ou utilisez 
+celui qui a été généré automatiquement. Si vous avez sélectionné <strong>Exiger un mot de passe</strong>, vous devrez utiliser ce mot de passe lorsque vous vous connecterez depuis Screens.
+<img src="Support%20Technique%20-%20Configuration%20de%20Linux%20pour%20l'acc%C3%A8s%20%C3%A0%20distance_fichiers/linux-remote-desktop-settings-in.png" alt=""></li>
+<li>Dans notre exemple, le nom d'hôte à utiliser lors de la <a href="https://support.edovia.com/fr/screens-4/getting-started/new-connection">création d'une connexion à votre ordinateur</a> dans Screens serait <strong>Ubuntu-22-04.local</strong> (<em>sans</em> le préfixe vnc://).</li>
+</ol>
+<h2>Facultatif&nbsp;: Installer un serveur SSH</h2>
+<h3>Installation d'OpenSSH</h3>
+<p>Pour installer OpenSSH, ouvrez un terminal et exécutez les commandes suivantes avec les autorisations de superutilisateur.</p>
+<p>Pour les distributions utilisant le système de gestion de paquets apt comme Ubuntu, Debian ou Linux Mint</p>
+<pre><code>$ sudo apt-get install openssh-server openssh-client</code></pre>
+<p>Pour les distributions utilisant le système de gestion de packages rpm, telles que Red Hat Enterprise, CentOS ou Fedora</p>
+<pre><code>$ yum -y install openssh-server openssh-client</code></pre>
+<h3>Tester la connexion</h3>
+<p>Avant de continuer, utilisez la commande Terminal suivante pour confirmer que votre serveur OpenSSH fonctionne correctement.</p>
+<pre><code>$ nc -v -z 127.0.0.1 22</code></pre>
+<h2>Rendre votre ordinateur accessible à distance</h2>
+<p>Si vous souhaitez vous connecter à votre ordinateur à distance, nous 
+vous recommandons d'utiliser un service tel que No-IP. Vous trouverez 
+des instructions dans <a href="https://support.edovia.com/fr/screens-connect-4/how-to/reachable-without-screens-connect">cet article</a>.</p>
+<h2>Sélection d'un moniteur</h2>
+<p>Afin de sélectionner un moniteur particulier sur votre ordinateur, 
+vous devez spécifier un numéro de port différent. Vous trouverez plus de
+ détails dans <a href="https://support.edovia.com/fr/screens-4/features/display-selection">cet article</a>.</p>
+<h2>Configuration de Screens</h2>
+<p>Une fois que vous avez terminé, vous pouvez maintenant <a href="https://support.edovia.com/fr/screens-4/getting-started/new-connection">créer une nouvelle connexion</a> afin de vous connecter à votre PC Linux.</p>	
+</div>		</section>
+		
+		
+
+		<!-- CONTACT -->
+		
+		<section id="contact">
+			<h3>Besoin d'aide ?</h3>
+			<p>
+				<a href="mailto:screens@edovia.com">Contactez-nous</a>
+			</p>
+		</section>
+				
+		<!-- FOOTER -->
+		
+		<footer>
+			<img src="Support%20Technique%20-%20Configuration%20de%20Linux%20pour%20l'acc%C3%A8s%20%C3%A0%20distance_fichiers/footer-edovia-logo.png">
+			<p>
+				<select id="language-select">
+<option value="/en/screens-4/getting-started/configure-linux/">English</option><option value="/fr/screens-4/getting-started/configure-linux/" selected="selected">Français</option>				</select>
+			</p>
+			<p>
+				©2008-2025 Edovia, Inc. Tous droits réservés.			</p>
+		</footer>
+		
+		<!-- SCRIPTS -->
+		
+		<script type="text/javascript" src="Support%20Technique%20-%20Configuration%20de%20Linux%20pour%20l'acc%C3%A8s%20%C3%A0%20distance_fichiers/retina.js"></script>
+		
+		<script>
+			const languageSelect = document.getElementById('language-select');
+		    languageSelect.addEventListener('change', function() {
+				const selectedLanguage = languageSelect.value;
+				window.location.href = selectedLanguage;
+			});
+		</script>
+		
+		<script>
+			function validateForm() {
+		  		var textField = document.getElementById("query");
+		  		return textField.value != "";
+			}
+		</script>
+	
+
+
+</body></html>
